@@ -1,0 +1,12 @@
+{
+    "exec": "node ./index.js",
+    "watch": ["src"],
+    "ext": "js",
+    "ignore": ["src/**/*.spec.js"],
+    "events": {
+      "crash": "npm start",
+      "restart": "echo 'Bot restarted.'"
+    },
+    "signal": "SIGINT"
+  }
+  
