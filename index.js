@@ -68,23 +68,23 @@ client.on(Events.MessageCreate, async (message) => {
         player: createAudioPlayer(),
       };
 
-      queue.set(message.guild!.id, queueData);
+      queue.set(message.guild?.id, queueData);
       queueData.songs.push(songData);
 
       try {
         const connection = joinVoiceChannel({
           channelId: voiceChannel.id,
           guildId: voiceChannel.guildId,
-          adapterCreator: voiceChannel.guild.voiceAdapterCreator!,
+          adapterCreator: voiceChannel.guild.voiceAdapterCreator
         });
 
         queueData.connection = connection;
         connection.subscribe(queueData.player);
-        playSong(message.guild!.id, queueData.songs[0]);
+        playSong(message.guild?.id, queueData.songs[0]);
         message.reply(`Playing: ${songData.title}`);
       } catch (error) {
         console.error('Failed to join voice channel:', error);
-        queue.delete(message.guild!.id);
+        queue.delete(message.guild?.id);
         message.reply('Failed to join the voice channel.');
         return;
       }
@@ -118,21 +118,21 @@ client.on(Events.MessageCreate, async (message) => {
           player: createAudioPlayer(),
         };
 
-        queue.set(message.guild!.id, queueData);
+        queue.set(message.guild?.id, queueData);
 
         try {
           const connection = joinVoiceChannel({
             channelId: voiceChannel.id,
             guildId: voiceChannel.guildId,
-            adapterCreator: voiceChannel.guild.voiceAdapterCreator!,
+            adapterCreator: voiceChannel.guild.voiceAdapterCreator
           });
           queueData.connection = connection;
           connection.subscribe(queueData.player);
-          playSong(message.guild!.id, queueData.songs[0]);
+          playSong(message.guild?.id, queueData.songs[0]);
           message.reply(`Playing playlist: ${playlistInfo}`);
         } catch (error) {
           console.error('Failed to join voice channel:', error);
-          queue.delete(message.guild!.id);
+          queue.delete(message.guild?.id);
           message.reply('Failed to join the voice channel.');
           return;
         }
