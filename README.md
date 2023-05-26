@@ -19,6 +19,8 @@ npm install ffmpeg-static
 
 npm install libsodium-wrappers
 
+if you are having issues running the bot just download the package.json file and run npm install
+
 # Commands-and-usage
 
 #!play
